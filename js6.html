@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" media="(min-width: 640px)" href="all_pc.css">
+    <link rel="stylesheet" media="(max-width: 640px)" href="all_smp.css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <link href="flexslider.css" rel="stylesheet">
+    <script src="jquery.flexslider-min.js"></script>
+    <style>
+        .container {
+            position: relative;
+        }
+
+        #frame {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            $('.flexslider').flexslider({
+                animation: "slide"
+            });
+        });
+
+        imgLeftStart = 0;
+        imgLeftEnd = 10000;
+        imgLeft = imgLeftStart;
+        imgTop = 100;
+        moveStep = 5;
+        moveSpeed = 100;
+
+        function moveImgX() {
+            document.getElementById("frame").style.top = imgTop + "px";
+            document.getElementById("frame").style.left = imgLeft + "px";
+
+            if (imgLeftEnd - imgLeftStart > 0) {
+                imgLeft += moveStep;
+                if (imgLeft > imgLeftEnd) {
+                    imgLeft = imgLeftStart;
+                }
+            } else {
+                imgLeft -= moveStep;
+                if (imgLeft < imgLeftStart) {
+                    imgLeft = imgLeftEnd;
+                }
+            }
+
+            setTimeout(moveImgX, moveSpeed);
+        }
+    </script>
+</head>
+
+<body onload="moveImgX()" style="background-image:url(bg050.gif);">
+    <div class="container">
+        <h1>Animation</h1>
+        <div><img id="frame" src="bird.gif"></div>
+    </div>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" media="(min-width: 640px)" href="all_pc.css">
+    <link rel="stylesheet" media="(max-width: 640px)" href="all_smp.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <link href="flexslider.css" rel="stylesheet">
+    <script src="jquery.flexslider-min.js"></script>
+    <script>
+        $(function () {
+            $('.flexslider').flexslider({
+                animation: "slide"
+            });
+        });
+
+        function resetOptions() {
+            document.getElementById("name").value = "";
+            document.getElementById("comment").value = "";
+            document.getElementById("school").selectedIndex = 0;
+            var colorOptions = document.getElementsByName("color");
+            for (var i = 0; i < colorOptions.length; i++) {
+                colorOptions[i].checked = false;
+            }
+            var checkboxOptions = document.querySelectorAll('input[type="checkbox"]');
+            checkboxOptions.forEach(function (checkbox) {
+                checkbox.checked = false;
+            });
+            var selectElement = document.getElementsByName("instruments")[0];
+            for (var i = 0; i < selectElement.length; i++) {
+                selectElement.options[i].selected = false;
+            }
+        }
+
+        function showInputText() {
+            var inputValue = document.getElementById("name").value;
+            alert("You entered: " + inputValue);
+        }
+
+        function showInputComment() {
+            var inputComment = document.getElementById("comment").value;
+            alert("You entered: " + inputComment);
+        }
+
+        function showInputColor() {
+            var colorOptions = document.getElementsByName("color");
+            var selectedColor;
+
+            for (var i = 0; i < colorOptions.length; i++) {
+                if (colorOptions[i].checked) {
+                    selectedColor = colorOptions[i].value;
+                    break;
+                }
+            }
+
+            if (selectedColor) {
+                alert("Selected Color: " + selectedColor);
+            } else {
+                alert("Please select a color.");
+            }
+        }
+
+        function showSelectLanguage() {
+            var selectedLanguages = [];
+            var checkboxOptions = document.querySelectorAll('input[type="checkbox"]:checked');
+
+            checkboxOptions.forEach(function (checkbox) {
+                selectedLanguages.push(checkbox.value);
+            });
+
+            alert("Selected Languages: " + selectedLanguages.join(", "));
+        }
+
+        // Function to show the selected option from the dropdown
+        function showSelectedschool() {
+            var selectedOption = document.getElementById("school").value;
+            alert("Selected Option: " + selectedOption);
+        }
+
+        // Function to show the selected instruments from the dropdown
+        function showSelectedInstruments() {
+            var selectedInstruments = [];
+            var selectElement = document.getElementsByName("instruments")[0];
+            for (var i = 0; i < selectElement.length; i++) {
+                if (selectElement.options[i].selected) {
+                    selectedInstruments.push(selectElement.options[i].value);
+                }
+            }
+
+            alert("Selected Instruments: " + selectedInstruments.join(", "));
+        }
+
+        function showSubmit() {
+            var inputValue = document.getElementById("name").value;
+            var inputComment = document.getElementById("comment").value;
+
+            var colorOptions = document.getElementsByName("color");
+            var selectedColor;
+
+            for (var i = 0; i < colorOptions.length; i++) {
+                if (colorOptions[i].checked) {
+                    selectedColor = colorOptions[i].value;
+                    break;
+                }
+            }
+
+            var selectedLanguages = [];
+            var checkboxOptions = document.querySelectorAll('input[type="checkbox"]:checked');
+
+            checkboxOptions.forEach(function (checkbox) {
+                selectedLanguages.push(checkbox.value);
+            });
+
+            var selectedOption = document.getElementById("school").value;
+
+            var selectedInstruments = [];
+            var selectElement = document.getElementsByName("instruments")[0];
+            for (var i = 0; i < selectElement.length; i++) {
+                if (selectElement.options[i].selected) {
+                    selectedInstruments.push(selectElement.options[i].value);
+                }
+            }
+
+            var submitContent =
+                "Name: " + inputValue + "\n" +
+                "Comment: " + inputComment + "\n" +
+                "Selected Color: " + (selectedColor ? selectedColor : "None") + "\n" +
+                "Selected Languages: " + (selectedLanguages.length > 0 ? selectedLanguages.join(", ") : "None") + "\n" +
+                "Selected School: " + (selectedOption !== "None" ? selectedOption : "None") + "\n" +
+                "Selected Instruments: " + (selectedInstruments.length > 0 ? selectedInstruments.join(", ") : "None");
+
+            alert(submitContent);
+        }
+
+        // Function to change image on mouseover and mouseout
+        function changeImage(newSrc) {
+            var imageElement = event.target;
+            var originalSrc = imageElement.src;
+
+            imageElement.src = newSrc;
+            setTimeout(function () {
+                imageElement.src = originalSrc;
+            }, 1000);
+        }
+
+        // Function to display images on button click
+        function displayImage(imageUrl) {
+            var imageElement = document.getElementById('displayedImage');
+            imageElement.src = imageUrl;
+        }
+    </script>
+</head>
+<body>
+    <div class="container" style="height: 750px;">
+        <h1>JS World</h1>
+        <input type="text" id="name" name="name">
+        <button onclick="showInputText()">Show Text</button><br><br>
+
+        <textarea name="comment" id="comment" cols="20" rows="2"></textarea>
+        <button onclick="showInputComment()">Show Text</button>
+
+        <p style="text-align: center;">Please select your favorite color:</p>
+        <input type="radio" name="color" value="Red">Red
+        <input type="radio" name="color" value="Yellow">Yellow
+        <input type="radio" name="color" value="Blue">Blue<br><br>
+        <button onclick="showInputColor()">Selected color</button>
+
+        <p style="text-align: center;">Please select the language:</p>
+        <input type="checkbox" id="checkboxOption1" value="Japanese">
+        <label for="checkboxOption1">Japanese</label>
+        <input type="checkbox" id="checkboxOption2" value="English">
+        <label for="checkboxOption2">English</label>
+        <input type="checkbox" id="checkboxOption3" value="Chinese">
+        <label for="checkboxOption3">Chinese</label>
+        <input type="checkbox" id="checkboxOption4" value="Others">
+        <label for="checkboxOption4">Others</label><br><br>
+        <button onclick="showSelectLanguage()">Choose the language</button><br><br>
+
+        <select id="school">
+            <option value="None">Select School</option>
+            <option value="KCGI University">KCGI University</option>
+            <option value="Kyoto University">Kyoto University</option>
+            <option value="Sakura University">Sakura University</option>
+            <option value="Tokyo University">Tokyo University</option>
+            <option value="Others">Others</option>
+        </select>
+        <button onclick="showSelectedschool()">Choose school</button><br><br>
+
+        <select name="instruments" multiple="multiple" size="4">
+            <option value="guitar">Guitar</option>
+            <option value="drums">Drums</option>
+            <option value="keyboard">Keyboards</option>
+            <option value="bass">Bass</option>
+        </select>
+        <button onclick="showSelectedInstruments()">Choose the instruments</button><br><br>
+
+        <input type="submit" value="submit" onclick="showSubmit()">
+        <button onclick="resetOptions()" style="margin-left: 10px;">Reset</button>
+        <br>
+        <img src="cat.jpg" height="50px" width="50px" alt="cat" onmouseover="changeImage('cat2.jpg')"
+            onmouseout="changeImage('cat.jpg')">
+        <br>
+        <button onclick="displayImage('pashupati.jpg')">Pashupati</button>
+        <button onclick="displayImage('bird.jpg')">Bird</button>
+        <br><br>
+        <img id="displayedImage" src="janaki.jpg" height="100px" width="100px" alt="Displayed Image">
+    </div>
+</body>
+</html>

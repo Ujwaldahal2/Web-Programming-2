@@ -1,0 +1,107 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" media="(min-width: 640px)" href="all_pc.css">
+    <link rel="stylesheet" media="(max-width: 640px)" href="all_smp.css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <link href="flexslider.css" rel="stylesheet">
+    <script src="jquery.flexslider-min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <style>
+        #mymap {
+            width: 100%;
+            height: 85%;
+            margin: auto;
+        }
+    </style>
+    <script>
+        $(function () {
+            $('.flexslider').flexslider({
+                animation: "slide"
+            });
+        });
+    </script>
+</head>
+
+<body style="background-image:url(bg050.gif);">
+
+
+    <div class="container" style="height: 600px;">
+        <h1>Map</h1>
+        <div id="mymap"></div>
+        <script>
+            function initialize() {
+                var map = new google.maps.Map(document.getElementById('mymap'), {
+                    zoom: 3,
+                    center: { lat: 26.854366, lng: 85.973897 },
+                    mapTypeId: google.maps.MapTypeId.SATELLITE
+                });
+
+                var marker1 = new google.maps.Marker({
+                    position: { lat: 26.868027476185006, lng: 85.97480299606269 },
+                    map: map,
+                    title: 'Hometown-Sakhuwa, Mahendranagar'
+                });
+
+                var marker2 = new google.maps.Marker({
+                    position: { lat: 35.0334965319171, lng: 135.77922317079157 },
+                    map: map,
+                    title: 'The Kyoto of Graduates Studies for Informatics'
+                });
+
+                var marker3 = new google.maps.Marker({
+                    position: { lat: 26.730586086588737, lng: 85.92554176596249 },
+                    map: map,
+                    title: 'Janaki Temple-The heart of Janakpur'
+                });
+
+                var info1 = new google.maps.InfoWindow({
+                    content: "Mahendranagar is a town in Chhireshwarnath Municipality of Dhanusa District in the Janakpur Zone of south-eastern Nepal. The formerly Village Development Committee was converted into municipality merging along with existing VDCs Ramdaiya, Sakhuwa Mahendranagar, Hariharpur and Digambarpur on 18 May 2014.[1][2] At the time of the 1991 Nepal census it had a population of 10,209 persons living in 1916 individual households. Mahendranagar acts as bridge between Dhalkebar and Janakpur. Basically it is popular for its largest cattle market in the Nepal. It is assumed that 65% of cattle for e.g. buffalo, goats in Kathmandu valley are brought from here[citation needed]. The town is named after late king Mahendra."
+                });
+
+                var info2 = new google.maps.InfoWindow({
+                    content: "The Kyoto College of Graduate Studies for Informatics (KCGI) [1] is an internet technology school located in Kyoto, Japan. It offers a Master's Degree in Applied Information Technology (M. S. IT) focussing on web business technology and web systems development. The college has an international presence."
+                });
+
+                var info3 = new google.maps.InfoWindow({
+                    content: "Janaki Mandir (Nepali: जानकी मन्दिर) is a Hindu temple in Janakpur, Nepal, dedicated to the Hindu goddess Sita. It is an example of mixed Hindu Maithil architecture[1] Fully built in bright white and constructed in an area of 1,480 square metres (15,930 sq. feet) in a mixed style of and Hindu Kingdomship of ancient Mithila.[2] It is a three-storied structure made entirely of stone and marble."
+                });
+
+                var currentInfoWindow = null;
+
+                google.maps.event.addListener(marker1, "click", function () {
+                    if (currentInfoWindow) {
+                        currentInfoWindow.close();
+                    }
+                    info1.open(map, marker1);
+                    currentInfoWindow = info1;
+                });
+
+                google.maps.event.addListener(marker2, "click", function () {
+                    if (currentInfoWindow) {
+                        currentInfoWindow.close();
+                    }
+                    info2.open(map, marker2);
+                    currentInfoWindow = info2;
+                });
+
+                google.maps.event.addListener(marker3, "click", function () {
+                    if (currentInfoWindow) {
+                        currentInfoWindow.close();
+                    }
+                    info3.open(map, marker3);
+                    currentInfoWindow = info3;
+                });
+            }
+
+            google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
+
+    </div>
+    </div>
+</body>
+
+</html>

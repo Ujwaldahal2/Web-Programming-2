@@ -1,0 +1,63 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" media="(min-width: 640px)" href="all_pc.css">
+  <link rel="stylesheet" media="(max-width: 640px)" href="all_smp.css">
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <link href="flexslider.css" rel="stylesheet">
+  <script src="jquery.flexslider-min.js"></script>
+  <script>
+    $(function () {
+      $('.flexslider').flexslider({
+        animation: "slide"
+      });
+    });
+  </script>
+</head>
+  <div class="container" style="height: 600px;">
+    <h1>Scores</h1>
+    <script>
+      //Assigning the name and score of the student in two different arrays
+      var names = ["Wang", "Chen", "Zhao", "Liu", "Yamamoto", "Tanaka"]
+      var score = [80, 75, 92, 60, 91, 82]
+      // Display the scores of the six students uisng loop
+      document.write("<b>There are six students. Their scores are as follows.</b><br/>")
+      for (var i = 0; i < names.length; i++) {
+        document.write(names[i], " ", score[i],)
+        document.write("<br/>")
+      }
+      //displaying A grade student score and name
+      document.write(" <br/> <b>The following students are students who can get A.</b>")
+      var totalScore = 0;
+      for (var j = 0; j < names.length; j++) {
+        totalScore = totalScore + score[j]
+        if (score[j] >= 90) { // Find the names of students who can get an A
+          document.write("<br/>")
+          document.write(names[j], " ", score[j])
+        }
+      }
+      document.write("<br/><br/> Total Score is ", totalScore, ".") //displaying total score for the student
+      document.write(" <br/> The average score is ", totalScore / names.length, ".") //calculating average
+      //sortint the score in from highest to lowest
+      document.write("<br/><br/><b> Sort scores in descending order.</b> <br/>")
+      for (var i = 0; i < score.length; i++) { //outer loop
+        for (var j = i + 1; j < score.length; j++) { //inner loop
+          if (score[i] < score[j]) {
+            w = score[i]
+            n = names[i]
+            score[i] = score[j]
+            names[i] = names[j]
+            score[j] = w
+            names[j] = n
+          }
+        }
+        document.write(names[i], " ", score[i])
+        document.write("<br/>")
+      }
+    </script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" media="(min-width: 640px)" href="all_pc.css">
+    <link rel="stylesheet" media="(max-width: 640px)" href="all_smp.css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <link href="flexslider.css" rel="stylesheet">
+    <script src="jquery.flexslider-min.js"></script>
+    <style>
+        /*Main-shop-section*/
+        .main-shop-section {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .displayImage {
+            height: 250px;
+            width: 30%;
+            margin: 20px;
+            background-color: #cccccc;
+        }
+
+        /**shop section**/
+        .shop-section {
+            display: flex;
+            justify-content: space-evenly;
+            width: 70%;
+
+        }
+        .box {
+            height: 250px;
+            width: 70%;
+            background-color: white;
+            padding: 20px 0px 15px;
+            margin-top: 15px;
+        }
+        .box-image {
+            height: 200px;
+            background-size: cover;
+            margin-bottom: 1rem;
+        }
+        .box-content {
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+    </style>
+    <script>
+        $(function () {
+            $('.flexslider').flexslider({
+                animation: "slide"
+            });
+        });
+        function changeImage(item) {
+            var enlargedItem = document.querySelector(".enlargedItem");
+            var imageElement = item.querySelector(".box-image"); // Get the .box-image element
+            var imageUrl = imageElement.style.backgroundImage.slice(4, -1).replace(/['"]/g, ""); // Extract the URL from the style attribute
+
+            var imageHtml = '<img src="' + imageUrl + '" height="280px" width="250px" />';
+            enlargedItem.innerHTML = imageHtml;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Shop</h1>
+        <div class="main-shop-section">
+            <div class="shop-section">
+                <div class="box" onclick="changeImage(this)">
+                    <div class="box-content">
+                        <h3>Clothes</h3>
+                        <div class="box-image item" style="background-image: url('box1_image.jpg');"
+                            onclick="changeImage(this)"></div>
+                    </div>
+                </div>
+                <div class="box" onclick="changeImage(this)">
+                    <div class="box-content">
+                        <h3>Utensils</h3>
+                        <div class="box-image item" style="background-image: url('box2_image.jpg');"></div>
+                    </div>
+                </div>
+                <div class="box" onclick="changeImage(this)">
+                    <div class="box-content">
+                        <h3>Furniture</h3>
+                        <div class="box-image item" style="background-image: url('box3_image.jpg');"></div>
+                    </div>
+                </div>
+                <div class="box" onclick="changeImage(this)">
+                    <div class="box-content">
+                        <h3>Make Up Kits</h3>
+                        <div class="box-image item" style="background-image: url('box5_image.jpg');"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="displayImage enlargedItem">
+                <img src="box1_image.jpg" height="280px" width="250px">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

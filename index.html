@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" media="(min-width: 640px)" href="all_pc.css">
+    <link rel="stylesheet" media="(max-width: 640px)" href="all_smp.css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <link href="flexslider.css" rel="stylesheet">
+    <script src="jquery.flexslider-min.js"></script>
+    <script>
+        $(function(){
+            $('.flexslider').flexslider({
+                animation: "slide"
+            });
+        });
+
+        function showMore(id) {
+            document.getElementById(id + "Text").style.display = "block";
+            document.getElementById(id + "MoreButton").style.display = "none";
+            document.getElementById(id + "LessButton").style.display = "inline-block";
+        }
+
+        function showLess(id) {
+            document.getElementById(id + "Text").style.display = "none";
+            document.getElementById(id + "MoreButton").style.display = "inline-block";
+            document.getElementById(id + "LessButton").style.display = "none";
+        }
+    </script>
+</head>
+<body>
+        <div class="container">
+            <h1>Introduction</h1>
+            <p>Hello, My name is Ujwal Dahal. This is the final Presentation for Web Programming-II. I created pages using HTML, CSS and Javascript.</p>
+            <p>.</p>
+            <h2>Major in KCGI</h2>
+            <p id="majorText" style="display: none;">
+                My Major is Web System Development in KCGI.
+            </p>
+            <button id="majorMoreButton" onclick="showMore('major')">Show More</button>
+            <button id="majorLessButton" onclick="showLess('major')" style="display: none;">Show Less</button>
+
+            <h2>Programming Skills</h2>
+            <div id="skillsText" style="display: none;">
+              <P>I have learned about HTML, CSS and Python in my first Semester of KCGI. Now I am learning Javascript and Java. </P>
+          </div>
+            <button id="skillsMoreButton" onclick="showMore('skills')" style="margin-left: 10px;">Show More</button>
+            <button id="skillsLessButton" onclick="showLess('skills')" style="display: none; margin-left: 10px;">Show Less</button>
+        </div>
+    </div>
+</body>
+</html>
