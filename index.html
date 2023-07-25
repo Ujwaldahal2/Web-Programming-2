@@ -1,53 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" media="(min-width: 640px)" href="all_pc.css">
-    <link rel="stylesheet" media="(max-width: 640px)" href="all_smp.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" media="(min-width: 640px)" href="all_pc.css">
+<link rel="stylesheet" media="(max-width: 640px)" href="all_smp.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<link href="flexslider.css" rel="stylesheet">
+<script src="jquery.flexslider-min.js"></script>
+<script>
+  $(function(){
+    $('.flexslider').flexslider({
+      animation: "slide"
+    });
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <link href="flexslider.css" rel="stylesheet">
-    <script src="jquery.flexslider-min.js"></script>
-    <script>
-        $(function(){
-            $('.flexslider').flexslider({
-                animation: "slide"
-            });
-        });
+    $('.topnavde a').click(function(e) {
+      e.preventDefault(); 
+      var pageUrl = $(this).attr('href');
+      
+      // If it's the "Top page" link, scroll to the top of the page
+      if (pageUrl === 'index.html') {
+        $('html, body').animate({ scrollTop: 0 }, 'slow');
+      } else {
+        // For other links, update the iframe source
+        $('#contentFrame').attr('src', pageUrl);
+      }
+    });
+  });
 
-        function showMore(id) {
-            document.getElementById(id + "Text").style.display = "block";
-            document.getElementById(id + "MoreButton").style.display = "none";
-            document.getElementById(id + "LessButton").style.display = "inline-block";
-        }
-
-        function showLess(id) {
-            document.getElementById(id + "Text").style.display = "none";
-            document.getElementById(id + "MoreButton").style.display = "inline-block";
-            document.getElementById(id + "LessButton").style.display = "none";
-        }
-    </script>
+</script>
 </head>
-<body>
-        <div class="container">
-            <h1>Introduction</h1>
-            <p>Hello, My name is Ujwal Dahal. This is the final Presentation for Web Programming-II. I created pages using HTML, CSS and Javascript.</p>
-            <p>.</p>
-            <h2>Major in KCGI</h2>
-            <p id="majorText" style="display: none;">
-                My Major is Web System Development in KCGI.
-            </p>
-            <button id="majorMoreButton" onclick="showMore('major')">Show More</button>
-            <button id="majorLessButton" onclick="showLess('major')" style="display: none;">Show Less</button>
-
-            <h2>Programming Skills</h2>
-            <div id="skillsText" style="display: none;">
-              <P>I have learned about HTML, CSS and Python in my first Semester of KCGI. Now I am learning Javascript and Java. </P>
-          </div>
-            <button id="skillsMoreButton" onclick="showMore('skills')" style="margin-left: 10px;">Show More</button>
-            <button id="skillsLessButton" onclick="showLess('skills')" style="display: none; margin-left: 10px;">Show Less</button>
-        </div>
+<body style="background-image:url(bg050.gif);">
+<div id="pagebody" style="height: 1200px;">
+	<header>
+	<div class="flexslider" style="border-color:#CFC;">
+      <ul class="slides">
+        <li><img src="img/1.jpg" /></li>
+        <li><img src="img/2.jpg" /></li>
+        <li><img src="img/3.jpg" /></li>
+        <li><img src="img/4.jpg" /></li>
+        <li><img src="img/5.jpg" /></li>
+        <li><img src="img/6.jpg" /></li>
+        <li><img src="img/7.jpg" /></li>
+        <li><img src="img/8.jpg" /></li>
+      </ul>
     </div>
+
+    <div class="topnav">
+      <div class="topnavde"><a href="main.html"><b>Top page</b></a></div>
+      <div class="topnavde"><a href="js1.html"><b>Score</b></a></div>
+      <div class="topnavde"><a href="js2.html"><b>Shop</b></a></div>
+      <div class="topnavde"><a href="js3.html"><b>JS World</b></a></div>
+      <div class="topnavde"><a href="js4.html"><b>Form</b></a></div>
+      <div class="topnavde"><a href="js5.html"><b>GoogleMap</b></a></div>
+      <div class="topnavde"><a href="js6.html"><b>Animation</b></a></div>
+    </div>
+
+	</header>
+  <iframe id="contentFrame" src="main.html" width="900px" height="650px"></iframe>
+
+	<footer>Copyright (C) 2018s copyrights. KCGI.All Rights Reserved.</footer>
+</div>
 </body>
 </html>
